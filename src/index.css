@@ -1,0 +1,167 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&family=Newsreader:ital,wght@1,500&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "DM Sans", sans-serif;
+  --font-display: "Manrope", sans-serif;
+  --font-serif: "Newsreader", serif;
+
+  --color-cream: #f4f7f5;
+  --color-ink: #18201c;
+  --color-navy: #17231d;
+  --color-amber: #f3a236;
+  --color-amber-dark: #dd8724;
+  --color-amber-soft: #fff4df;
+  --color-coral: #d95842;
+  --color-coral-soft: #fff0ed;
+  --color-powder: #e6efea;
+  --color-mint: #dff1e5;
+  --color-line: #dce4df;
+
+  --shadow-card: 0 14px 40px rgba(23, 35, 29, 0.07);
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    background: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible,
+  select:focus-visible {
+    outline: 3px solid color-mix(in srgb, var(--color-amber) 75%, white);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .tech-canvas {
+    position: relative;
+    isolation: isolate;
+    background-color: var(--color-cream);
+    background-image:
+      linear-gradient(90deg, transparent 12%, rgba(38, 132, 79, 0.08) 12%, rgba(38, 132, 79, 0.08) 12.08%, transparent 12.08%),
+      linear-gradient(0deg, transparent 78%, rgba(224, 139, 42, 0.07) 78%, rgba(224, 139, 42, 0.07) 78.08%, transparent 78.08%),
+      radial-gradient(circle at 12% 78%, rgba(39, 150, 84, 0.14), transparent 24rem),
+      radial-gradient(circle at 84% 12%, rgba(243, 162, 54, 0.13), transparent 22rem),
+      radial-gradient(circle at 92% 88%, rgba(217, 88, 66, 0.1), transparent 24rem);
+  }
+
+  .tech-dark {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background-color: var(--color-navy);
+    background-image:
+      linear-gradient(90deg, transparent 18%, rgba(78, 197, 125, 0.15) 18%, rgba(78, 197, 125, 0.15) 18.15%, transparent 18.15%),
+      linear-gradient(0deg, transparent 68%, rgba(243, 162, 54, 0.13) 68%, rgba(243, 162, 54, 0.13) 68.15%, transparent 68.15%),
+      radial-gradient(circle at 18% 16%, rgba(39, 150, 84, 0.22), transparent 22rem),
+      radial-gradient(circle at 86% 82%, rgba(217, 88, 66, 0.17), transparent 20rem),
+      radial-gradient(circle at 76% 18%, rgba(243, 162, 54, 0.13), transparent 17rem);
+  }
+
+  .tech-dark::after {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    content: "";
+    opacity: 0.7;
+    background-image:
+      radial-gradient(circle at 18% 68%, #4ec57d 0 2px, transparent 3px),
+      radial-gradient(circle at 72% 68%, #f3a236 0 2px, transparent 3px),
+      radial-gradient(circle at 72% 32%, #d95842 0 2px, transparent 3px);
+  }
+
+  .field {
+    width: 100%;
+    min-height: 3.25rem;
+    border: 1px solid var(--color-line);
+    border-radius: 0.75rem;
+    background: white;
+    padding: 0.8rem 1rem;
+    color: var(--color-navy);
+    box-shadow: inset 0 1px 0 rgba(23, 35, 29, 0.02);
+    transition: border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .field::placeholder {
+    color: #9ca3af;
+  }
+
+  .field:hover,
+  .field:focus {
+    border-color: #278452;
+    box-shadow: 0 0 0 3px rgba(39, 132, 82, 0.08);
+  }
+
+  .section-kicker {
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    background: linear-gradient(90deg, #20814c, #e8972d 58%, #cf503c);
+    background-clip: text;
+    color: transparent;
+  }
+
+  .section-title {
+    margin-top: 0.35rem;
+    color: var(--color-navy);
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Technology-led surface treatment shared by the existing dashboard cards. */
+@layer utilities {
+  .shadow-card {
+    box-shadow:
+      0 14px 40px rgba(23, 35, 29, 0.07),
+      0 0 0 1px rgba(38, 126, 77, 0.025);
+  }
+
+  .bg-navy:not(.tech-dark) {
+    background-image: linear-gradient(135deg, #19271f, #21372a);
+  }
+
+  .bg-coral {
+    background-image: linear-gradient(90deg, #24804c, #ee9c31 62%, #d95842);
+  }
+
+  .text-coral {
+    color: #c74f3d;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
